@@ -1,0 +1,21 @@
+version: "3.8"
+services:
+  postgres:
+    container_name: 'hobby-service-db'
+    image: postgres
+    environment:
+      POSTGRES_USERNAME: postgres
+      POSTGRES_PASSWORD: 123
+    ports:
+      - "5432:5432"
+
+
+  myapp:
+    container_name: 'hobby-service'
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    links:
+      - postgres

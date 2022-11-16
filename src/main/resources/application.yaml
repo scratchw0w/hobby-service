@@ -1,0 +1,19 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://host.docker.internal:5432/hobbydb
+    username: postgres
+    password: 123
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      jdbc:
+        lob:
+          non_contextual_creation: true
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    generate-ddl: true
+
+service:
+  hobby-analysis-service:
+    base-url: ${HOBBY_SERVICE_URL:http://localhost:8080/hobby-analysis-service}
+    get-hobby-list-by-interests-url: ${service.hobby-analysis-service.base-url}/analyze
