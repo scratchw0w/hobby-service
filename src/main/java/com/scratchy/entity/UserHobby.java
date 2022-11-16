@@ -8,16 +8,25 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Entity
-@Table(name = "interests")
-public class Interest {
+@Table(name = "users_hobbies")
+@NoArgsConstructor
+public class UserHobby {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private long id;
 
-  @Column(name = "name")
-  private String name;
+  private long hobbyId;
+
+  @Column(name = "user_id")
+  private String userId;
+
+  public UserHobby(long hobbyId, String userId) {
+    this.userId = userId;
+    this.hobbyId = hobbyId;
+  }
 }
